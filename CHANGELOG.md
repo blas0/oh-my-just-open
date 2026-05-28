@@ -5,11 +5,9 @@ All notable changes to this project are documented here. Format based on [Keep a
 ## [Unreleased]
 
 ### Added
-- Sparkle 2 in-app updates (EdDSA-signed, sandboxed XPC installer).
-- Developer ID signing + notarization pipeline (`scripts/release.sh`).
+- Ad-hoc signed DMG build pipeline (`scripts/release-unsigned.sh`).
 - App Sandbox + Hardened Runtime enabled for distribution.
-- Cloudflare R2 hosting for DMG, Sparkle ZIP, and appcast feed.
-- Homebrew Cask template (`scripts/oh-my-just-open.rb.template`).
+- Self-hosted Homebrew tap (`blas0/homebrew-omjo`); updates ship via `brew upgrade --cask`.
 
 ## [1.0.0] - 2026-05-25
 

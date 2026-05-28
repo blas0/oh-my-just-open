@@ -12,17 +12,11 @@ cask "oh-my-just-open" do
     strategy :github_latest
   end
 
-  # Auto-strip the quarantine flag so Gatekeeper doesn't block the unsigned
-  # bundle on first launch. Cask installs already do this for the DMG itself;
-  # this directive applies it to the .app inside as well.
-  auto_updates true
-
   app "oh-my-just-open.app"
 
   zap trash: [
     "~/Library/Preferences/com.neurix.oh-my-just-open.plist",
     "~/Library/Application Support/com.neurix.oh-my-just-open",
     "~/Library/Caches/com.neurix.oh-my-just-open",
-    "~/Library/Application Support/Sparkle/Updates/oh-my-just-open",
   ]
 end

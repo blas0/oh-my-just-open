@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0A50025F41ADF9004C71AB76 /* Sparkle in Frameworks */ = {isa = PBXBuildFile; productRef = 69BBC5EA5F35C70217B28010 /* Sparkle */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -65,7 +64,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0A50025F41ADF9004C71AB76 /* Sparkle in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,9 +135,6 @@
 				0BE7BC8C2FC0EB3500726A4B /* oh-my-just-open */,
 			);
 			name = "oh-my-just-open";
-			packageProductDependencies = (
-				69BBC5EA5F35C70217B28010 /* Sparkle */,
-			);
 			productName = "oh-my-just-open";
 			productReference = 0BE7BC8A2FC0EB3500726A4B /* oh-my-just-open.app */;
 			productType = "com.apple.product-type.application";
@@ -218,9 +213,6 @@
 			);
 			mainGroup = 0BE7BC812FC0EB3500726A4B;
 			minimizedProjectReferenceProxies = 1;
-			packageReferences = (
-				0BE7BCDF2FC5EE1A00726A4B /* XCRemoteSwiftPackageReference "Sparkle" */,
-			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 0BE7BC8B2FC0EB3500726A4B /* Products */;
 			projectDirPath = "";
@@ -595,25 +587,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		0BE7BCDF2FC5EE1A00726A4B /* XCRemoteSwiftPackageReference "Sparkle" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sparkle-project/Sparkle";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.2;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		69BBC5EA5F35C70217B28010 /* Sparkle */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 0BE7BCDF2FC5EE1A00726A4B /* XCRemoteSwiftPackageReference "Sparkle" */;
-			productName = Sparkle;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 0BE7BC822FC0EB3500726A4B /* Project object */;
 }

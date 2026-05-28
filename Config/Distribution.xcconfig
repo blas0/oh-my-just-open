@@ -16,14 +16,3 @@ CODE_SIGN_ENTITLEMENTS = Config/oh-my-just-open.entitlements
 // Apple-schema keys go through INFOPLIST_KEY_*; Xcode promotes them automatically.
 INFOPLIST_KEY_LSApplicationCategoryType = public.app-category.utilities
 INFOPLIST_KEY_NSHumanReadableCopyright = Copyright © 2026 Neurix. MIT License.
-
-// Sparkle's SU* keys are NOT in Xcode's schema, so INFOPLIST_KEY_* won't promote them.
-// Instead they live in Config/Sparkle-Info.plist, merged into the auto-generated plist
-// via INFOPLIST_FILE. The values below are substituted into that plist at build time.
-//
-// REPLACE_WITH_R2_VANITY → set once R2 bucket is provisioned.
-// REPLACE_WITH_SPARKLE_PUBLIC_KEY → set after `./scripts/generate-sparkle-key.sh`.
-// `//` is the xcconfig comment marker, so the URL needs `$()` to break up `https://`.
-INFOPLIST_FILE = Config/Sparkle-Info.plist
-SU_FEED_URL = https:/$()/pub-06563b7bc8e246b69c21fe5af1f67b88.r2.dev/appcast.xml
-SU_PUBLIC_ED_KEY = xoNxSm5s0FFmJAwny+oBs7Jrk6sby2x9S8kLdvjnUh0=

@@ -41,7 +41,7 @@ After each `./scripts/release-unsigned.sh` run that produces a new DMG:
 ```sh
 # 1. Get the new version and sha256 from the release output.
 VERSION=1.0.1
-SHA256=$(shasum -a 256 "$APP_REPO_ROOT/Release/oh-my-just-open-${VERSION}.dmg" | awk '{print $1}')
+SHA256=$(shasum -a 256 "$APP_REPO_ROOT/dist/oh-my-just-open-${VERSION}.dmg" | awk '{print $1}')
 
 # 2. Update the cask file in the tap repo.
 cd "$TAP_REPO_ROOT"
@@ -60,12 +60,12 @@ git push
 
 ## Notes on the cask
 
-- `auto_updates true` tells Homebrew that the app updates itself (via
-  Sparkle), so `brew upgrade --cask` won't fight Sparkle's in-app updates.
+- No `auto_updates` directive: updates ship via `brew upgrade --cask
+  oh-my-just-open`, not via an in-app updater.
 - `livecheck` with `:github_latest` lets `brew bump-cask-pr`-style automation
   notice new GitHub releases.
-- `zap` cleans up Sparkle's update cache as well as the prefs/support dirs
-  so `brew uninstall --cask --zap` actually leaves no trace.
-- No `depends_on macos:` clause is set; the app's own
-  `SUMinimumSystemVersion` (26.0) handles compatibility. Add one here if you
-  want brew to refuse install on older macOS too.
+- `zap` cleans the app's prefs/support/cache dirs so `brew uninstall
+  --cask --zap` actually leaves no trace.
+- No `depends_on macos:` clause is set here; the cask template includes
+  one for macOS 26+ (`>= :tahoe`). Add it here too if you want brew to
+  refuse install on older macOS.
