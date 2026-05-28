@@ -1,0 +1,44 @@
+# Homebrew Cask template for oh-my-just-open.
+#
+# Phase 5 — submit AFTER the first release is live and the GitHub repo is public.
+#
+# 1. Fork https://github.com/Homebrew/homebrew-cask
+# 2. Copy this file into Casks/o/oh-my-just-open.rb in your fork.
+# 3. Compute sha256 of the live R2-hosted versioned DMG:
+#      curl -sL https://<r2-vanity>/releases/oh-my-just-open-1.0.0.dmg \
+#        | shasum -a 256
+# 4. Replace REPLACE_WITH_SHA256 below with the printed digest.
+# 5. brew audit --new --strict --online --token-conflicts Casks/o/oh-my-just-open.rb
+# 6. brew install --cask ./Casks/o/oh-my-just-open.rb  # local install test
+# 7. Open PR to Homebrew/homebrew-cask following their PR template.
+#
+# Subsequent versions: bump `version`, recompute sha256, PR. Or wait for the
+# Homebrew autobump bot (works if GitHub Releases stay structured per cask conventions).
+
+cask "oh-my-just-open" do
+  version "1.0.0"
+  sha256 "REPLACE_WITH_SHA256"
+
+  url "https://github.com/blas0/oh-my-just-open/releases/download/v#{version}/oh-my-just-open-#{version}.dmg",
+      verified: "github.com/blas0/oh-my-just-open/"
+  name "oh-my-just-open"
+  desc "Minimal macOS default-app manager for URL schemes and file types"
+  homepage "https://github.com/blas0/oh-my-just-open"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  auto_updates true   # Sparkle handles in-app updates
+  depends_on macos: ">= :tahoe"   # macOS 26+
+
+  app "oh-my-just-open.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.neurix.oh-my-just-open.plist",
+    "~/Library/Application Support/com.neurix.oh-my-just-open",
+    "~/Library/Caches/com.neurix.oh-my-just-open",
+    "~/Library/Application Support/Sparkle/Updates/com.neurix.oh-my-just-open",
+  ]
+end

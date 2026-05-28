@@ -48,6 +48,10 @@ enum LaunchServicesManager {
         }
     }
 
+    static func makeAppInfo(from url: URL) -> AppInfo? {
+        appInfo(from: url)
+    }
+
     private static func appInfo(from url: URL) -> AppInfo? {
         guard let bundle = Bundle(url: url), let id = bundle.bundleIdentifier else { return nil }
         let info = bundle.infoDictionary ?? [:]

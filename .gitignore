@@ -22,3 +22,6 @@ dist/
 .mcp_data/
 oh-my-just-open.md
 oh-my-just-open-icons/
+
+# R2 credentials — never commit
+scripts/.env.release

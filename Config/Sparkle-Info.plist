@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Partial Info.plist holding Sparkle keys only. Xcode merges this into the
+  auto-generated Info.plist when INFOPLIST_FILE points here. Apple-managed
+  keys (CFBundle*, LSApplicationCategoryType, NSHumanReadableCopyright, etc.)
+  still come from INFOPLIST_KEY_* settings — those use Xcode's plist schema
+  and aren't allowed for third-party keys like Sparkle's SU*.
+
+  $(SU_FEED_URL) and $(SU_PUBLIC_ED_KEY) are resolved from build settings
+  in Config/Distribution.xcconfig.
+-->
+<plist version="1.0">
+<dict>
+    <key>SUFeedURL</key>
+    <string>$(SU_FEED_URL)</string>
+    <key>SUPublicEDKey</key>
+    <string>$(SU_PUBLIC_ED_KEY)</string>
+    <key>SUEnableAutomaticChecks</key>
+    <true/>
+    <key>SUAllowsAutomaticUpdates</key>
+    <true/>
+    <key>SUAutomaticallyUpdate</key>
+    <false/>
+    <key>SUEnableInstallerLauncherService</key>
+    <true/>
+</dict>
+</plist>

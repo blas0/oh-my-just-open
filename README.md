@@ -7,12 +7,25 @@ A minimal macOS default-app manager. Pick which app opens which URL scheme or fi
 **Homebrew (recommended)**
 
 ```sh
+brew tap blas0/omjo
 brew install --cask oh-my-just-open
 ```
 
+Brew handles macOS's quarantine flag for you — no first-launch friction.
+
 **Direct download**
 
-Grab the latest `.dmg` from the [Releases page](https://github.com/blas0/oh-my-just-open/releases/latest), open it, and drag the app to `/Applications`.
+Grab the latest `.dmg` directly: [oh-my-just-open-latest.dmg](https://pub-06563b7bc8e246b69c21fe5af1f67b88.r2.dev/releases/oh-my-just-open-latest.dmg). Drag the app to `/Applications`.
+
+Because the build is ad-hoc signed (no Apple Developer Program subscription backing it), macOS will refuse to open it on first launch with *"can't be opened because Apple cannot check it for malicious software."* Clear the quarantine flag once and you're done:
+
+```sh
+xattr -dr com.apple.quarantine /Applications/oh-my-just-open.app
+```
+
+Or right-click the app → **Open** → **Open Anyway** in the dialog. Future launches and Sparkle auto-updates work normally.
+
+Per-version downloads and release notes are also on the [Releases page](https://github.com/blas0/oh-my-just-open/releases).
 
 ## Use
 

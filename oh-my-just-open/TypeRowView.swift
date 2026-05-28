@@ -1,5 +1,6 @@
 import AppKit
 import SwiftUI
+import UniformTypeIdentifiers
 
 struct TypeRowView: View {
     let type: ManagedType
@@ -76,6 +77,10 @@ struct TypeRowView: View {
             if candidates.isEmpty {
                 Text("No apps claim this type")
             }
+            Divider()
+            Button("Choose another app…") {
+                chooseAnotherApp()
+            }
         } label: {
             HStack(spacing: 6) {
                 if let current = currentDefault {
@@ -90,6 +95,24 @@ struct TypeRowView: View {
         }
         .menuStyle(.button)
         .fixedSize()
+    }
+
+    private func chooseAnotherApp() {
+        let panel = NSOpenPanel()
+        panel.title = "Choose an application"
+        panel.prompt = "Select"
+        panel.canChooseFiles = true
+        panel.canChooseDirectories = false
+        panel.allowsMultipleSelection = false
+        panel.allowedContentTypes = [.application]
+        panel.directoryURL = URL(fileURLWithPath: "/Applications")
+
+        guard panel.runModal() == .OK,
+              let url = panel.url,
+              let app = LaunchServicesManager.makeAppInfo(from: url)
+        else { return }
+
+        onPick(app)
     }
 }
 
