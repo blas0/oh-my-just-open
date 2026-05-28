@@ -1,6 +1,19 @@
 # oh-my-just-open
 
-A minimal macOS default-app manager. Pick which app opens which URL scheme or file type — without digging through Finder's "Get Info" panels one at a time.
+<div align="center">
+
+<img src="polaroids/avatar.png" width="25%">
+
+A minimal macOS default-app manager — pick which app opens which URL scheme or file type, without digging through Finder's "Get Info" panels one at a time.
+
+<div>
+<img src="https://svgl.app/library/homebrew.svg" width="32">
+<img src="https://svgl.app/library/swift.svg" width="32">
+</div>
+
+</div>
+
+---
 
 ## Install
 
@@ -17,6 +30,14 @@ Homebrew is the only supported install path. Updates ship via `brew upgrade --ca
 - The **Files** tab does the same for file types (`.pdf`, `.png`, `.txt`, …).
 - The **All Apps** toggle shows every claimant for a type, not just the system-blessed list. Useful when an app claims a type but doesn't appear in the standard picker.
 - Changes apply via `LaunchServices`. URL schemes and high-impact file types prompt for confirmation; other changes apply silently.
+
+<div align="center">
+  <img src="polaroids/about.png" width="90%">
+  <br>
+  <img src="polaroids/urls.png" width="90%">
+  <br>
+  <img src="polaroids/files.png" width="90%">
+</div>
 
 ## Contributing
 
