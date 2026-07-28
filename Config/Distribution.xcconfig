@@ -1,0 +1,18 @@
+// Direct (Developer ID) distribution config.
+// Applied to the Release configuration for the app target.
+
+#include "Version.xcconfig"
+
+// Signing + hardening
+CODE_SIGN_STYLE = Automatic
+CODE_SIGN_IDENTITY = Developer ID Application
+ENABLE_APP_SANDBOX = YES
+ENABLE_HARDENED_RUNTIME = YES
+OTHER_CODE_SIGN_FLAGS = $(inherited) --timestamp --options=runtime
+
+// Entitlements
+CODE_SIGN_ENTITLEMENTS = Config/oh-my-just-open.entitlements
+
+// Apple-schema keys go through INFOPLIST_KEY_*; Xcode promotes them automatically.
+INFOPLIST_KEY_LSApplicationCategoryType = public.app-category.utilities
+INFOPLIST_KEY_NSHumanReadableCopyright = Copyright © 2026 Neurix. MIT License.

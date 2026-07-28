@@ -1,0 +1,39 @@
+# Homebrew Cask template for oh-my-just-open.
+#
+# Self-hosted tap (blas0/homebrew-omjo). The official homebrew/cask repo
+# rejects un-notarized apps, so distribution lives in the maintainer-owned
+# tap instead. To bump:
+#
+#   VERSION=1.0.1
+#   SHA256=$(shasum -a 256 "$APP_REPO_ROOT/dist/oh-my-just-open-${VERSION}.dmg" | awk '{print $1}')
+#   cd "$TAP_REPO_ROOT"
+#   sed -i '' "s/version \".*\"/version \"${VERSION}\"/" Casks/oh-my-just-open.rb
+#   sed -i '' "s/sha256 \"[a-f0-9]*\"/sha256 \"${SHA256}\"/" Casks/oh-my-just-open.rb
+#   brew audit --cask Casks/oh-my-just-open.rb
+#   git add Casks/oh-my-just-open.rb && git commit -m "oh-my-just-open ${VERSION}" && git push
+
+cask "oh-my-just-open" do
+  version "1.0.0"
+  sha256 "REPLACE_WITH_SHA256"
+
+  url "https://github.com/blas0/oh-my-just-open/releases/download/v#{version}/oh-my-just-open-#{version}.dmg",
+      verified: "github.com/blas0/oh-my-just-open/"
+  name "oh-my-just-open"
+  desc "Minimal macOS default-app manager for URL schemes and file types"
+  homepage "https://github.com/blas0/oh-my-just-open"
+
+  livecheck do
+    url :url
+    strategy :github_latest
+  end
+
+  depends_on macos: ">= :tahoe"   # macOS 26+
+
+  app "oh-my-just-open.app"
+
+  zap trash: [
+    "~/Library/Preferences/com.neurix.oh-my-just-open.plist",
+    "~/Library/Application Support/com.neurix.oh-my-just-open",
+    "~/Library/Caches/com.neurix.oh-my-just-open",
+  ]
+end

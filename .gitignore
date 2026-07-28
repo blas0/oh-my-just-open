@@ -1,0 +1,27 @@
+# macOS
+.DS_Store
+
+# Xcode user state / build artifacts
+xcuserdata/
+*.xcuserstate
+DerivedData/
+build/
+*.xcarchive
+*.app.dSYM.zip
+*.profraw
+
+# Swift Package Manager
+.build/
+.swiftpm/
+Package.resolved
+
+# Release artifacts
+dist/
+
+# Local tooling / scratch
+.mcp_data/
+oh-my-just-open.md
+oh-my-just-open-icons/
+
+# R2 credentials — never commit
+scripts/.env.release
