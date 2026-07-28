@@ -1,7 +1,14 @@
 # homebrew-tap (skeleton)
 
-This directory is the template for a separate, self-hosted Homebrew tap repo
-that lives at **`github.com/blas0/homebrew-omjo`** (not in this repo).
+> **Superseded.** The live tap source now lives beside this project in the
+> monorepo at **`mac-os-apps/homebrew-omjo/`** — edit the cask there and run
+> `./homebrew-omjo/publish-tap.sh` to publish. `github.com/blas0/homebrew-omjo`
+> is now a publish target only (Homebrew requires that standalone repo name for
+> `brew tap blas0/omjo` to resolve). This file is kept for the background notes
+> below; the one-time setup steps are historical.
+
+This directory is the original template for the self-hosted Homebrew tap repo
+at **`github.com/blas0/homebrew-omjo`**.
 
 Why a self-hosted tap instead of the official `homebrew/cask`:
 the app ships ad-hoc signed without Apple notarization, and the official
