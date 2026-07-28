@@ -20,7 +20,7 @@ struct AboutView: View {
         let raw = """
         For **bugs** and **feature requests**, submit a pull request to the repo.
 
-        [oh-my-just-open](https://github.com/blas0/oh-my-just-open)
+        [oh-my-just-open](https://github.com/blas0/mac-os-apps/tree/main/oh-my-just-open)
         """
         return makeAttributed(raw)
     }()
