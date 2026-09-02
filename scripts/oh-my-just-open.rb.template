@@ -16,24 +16,24 @@ cask "oh-my-just-open" do
   version "1.0.0"
   sha256 "REPLACE_WITH_SHA256"
 
-  url "https://github.com/blas0/mac-os-apps/releases/download/oh-my-just-open-v#{version}/oh-my-just-open-#{version}.dmg",
-      verified: "github.com/blas0/mac-os-apps/"
+  url "https://github.com/blas0/oh-my-just-open/releases/download/oh-my-just-open-v#{version}/oh-my-just-open-#{version}.dmg",
+      verified: "github.com/blas0/oh-my-just-open/"
   name "oh-my-just-open"
-  desc "Minimal macOS default-app manager for URL schemes and file types"
-  homepage "https://github.com/blas0/mac-os-apps/tree/main/oh-my-just-open"
+  desc "Minimal default-app manager for URL schemes and file types"
+  homepage "https://github.com/blas0/oh-my-just-open"
 
   livecheck do
     url :url
     strategy :github_latest
   end
 
-  depends_on macos: ">= :tahoe"   # macOS 26+
+  depends_on macos: :tahoe
 
   app "oh-my-just-open.app"
 
   zap trash: [
-    "~/Library/Preferences/com.neurix.oh-my-just-open.plist",
     "~/Library/Application Support/com.neurix.oh-my-just-open",
     "~/Library/Caches/com.neurix.oh-my-just-open",
+    "~/Library/Preferences/com.neurix.oh-my-just-open.plist",
   ]
 end

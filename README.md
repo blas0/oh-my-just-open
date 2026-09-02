@@ -43,6 +43,8 @@ Homebrew is the only supported install path. Updates ship via `brew upgrade --ca
 
 Bugs and feature requests welcome — open an issue or PR.
 
+Source code and releases live at [github.com/blas0/oh-my-just-open](https://github.com/blas0/oh-my-just-open).
+
 ## License
 
 MIT — see [LICENSE](./LICENSE).

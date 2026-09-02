@@ -53,8 +53,7 @@ VERSION=$(awk -F' = ' '/^MARKETING_VERSION/ {gsub(/[ \t]/, "", $2); print $2}' "
 BUILD=$(awk -F' = ' '/^CURRENT_PROJECT_VERSION/ {gsub(/[ \t]/, "", $2); print $2}' "$PROJECT_ROOT/Config/Version.xcconfig")
 [[ -n "$VERSION" && -n "$BUILD" ]] || { echo "[!] Couldn't parse version from Config/Version.xcconfig"; exit 1; }
 
-# This project lives inside the blas0/mac-os-apps monorepo, which hosts several
-# projects off one tag namespace — hence the project-prefixed tag.
+# Keep the project name in the tag so release URLs remain stable.
 TAG="oh-my-just-open-v$VERSION"
 echo "[*] Version: $VERSION ($BUILD)"
 
@@ -63,11 +62,9 @@ echo "[*] Version: $VERSION ($BUILD)"
 # ============================================================
 echo ""
 echo "[0] Git pre-flight..."
-# Scoped to this project's subtree — a sibling project being dirty in the
-# monorepo is not a reason to block an oh-my-just-open release.
-if [[ -n "$(git -C "$PROJECT_ROOT" status --porcelain -- "$PROJECT_ROOT")" ]]; then
-    echo "[!] Working tree dirty under $PROJECT_ROOT:"
-    git -C "$PROJECT_ROOT" status --short -- "$PROJECT_ROOT"
+if [[ -n "$(git -C "$PROJECT_ROOT" status --porcelain)" ]]; then
+    echo "[!] Working tree dirty:"
+    git -C "$PROJECT_ROOT" status --short
     echo "    Commit or stash before releasing."
     exit 1
 fi
@@ -187,7 +184,7 @@ if ! $DRY_RUN; then
     echo "  sha256: $SHA256"
 fi
 echo ""
-echo "  # Tag and push (project-prefixed — mac-os-apps hosts several projects):"
+echo "  # Tag and push:"
 echo "  git tag -a $TAG -m \"oh-my-just-open $VERSION\""
 echo "  git push origin main --tags"
 echo ""
@@ -197,14 +194,16 @@ echo "    \"$DMG_PATH\" \\"
 echo "    --title \"oh-my-just-open v$VERSION\" \\"
 echo "    --notes \"See CHANGELOG.md for details.\""
 echo ""
-echo "  # Bump the cask in the sibling directory, then publish it to the tap repo:"
-echo "  cd \"\$(git -C \\\"$PROJECT_ROOT\\\" rev-parse --show-toplevel)/homebrew-omjo\""
+echo "  # Bump the cask in the standalone Homebrew tap checkout:"
+echo "  cd \"\$(dirname \\\"$PROJECT_ROOT\\\")/homebrew-omjo\""
 echo "  sed -i '' \"s/version \\\".*\\\"/version \\\"$VERSION\\\"/\" Casks/oh-my-just-open.rb"
 if [[ -n "$SHA256" ]]; then
     echo "  sed -i '' \"s/sha256 \\\"[a-f0-9]*\\\"/sha256 \\\"$SHA256\\\"/\" Casks/oh-my-just-open.rb"
 fi
-echo "  git add Casks/oh-my-just-open.rb && git commit -m \"oh-my-just-open $VERSION\""
-echo "  ./publish-tap.sh          # pushes the cask to blas0/homebrew-omjo"
+echo "  git switch -c \"chore/oh-my-just-open-$VERSION\""
+echo "  git add Casks/oh-my-just-open.rb"
+echo "  git commit -m \"chore: update oh-my-just-open to $VERSION\""
+echo "  git push -u origin \"chore/oh-my-just-open-$VERSION\""
 echo ""
 echo "Verification:"
 echo "  codesign -dv --verbose=4 \"$APP_PATH\"     # should show 'adhoc' Signature"
